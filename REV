@@ -3,280 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Site - En Construction</title>
+    <title>Ma Branche - Développement</title>
     <style>
-        /* Styles globaux */
+        /* Styles généraux */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        
-        /* Titre rouge */
-        .titre-rouge {
-            color: red;
-            text-align: center;
-            padding: 20px;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        /* Menu de navigation */
-        .nav-menu {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 30px 0;
-            list-style: none;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-        }
-        
-        .nav-menu a {
-            padding: 12px 25px;
-            background-color: #4a6fa5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            min-height: 100vh;
+            padding: 20px;
         }
         
-        .nav-menu a:hover {
-            background-color: #2c3e50;
-            transform: translateY(-3px);
-        }
-        
-        /* Page de construction */
-        .page-construction {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 40px;
-            background-color: white;
+        /* En-tête avec indicateur de branche */
+        .header-branche {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .page-construction h1 {
-            color: #e67e22;
+        .badge-branche {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sous-titre {
+            font-size: 1.2em;
+            opacity: 0.9;
             margin-bottom: 20px;
+        }
+        
+        /* Conteneur principal */
+        .conteneur-principal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        /* Cartes de fonctionnalités */
+        .carte {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .carte:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .carte h2 {
+            color: #ffd93d;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .carte p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        /* Icônes dans les cartes */
+        .icone {
             font-size: 2em;
         }
         
-        .page-construction p {
-            margin-bottom: 30px;
-            font-size: 1.1em;
-            color: #555;
+        /* Boutons de navigation */
+        .boutons-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
         
-        .btn-retour {
-            display: inline-block;
+        .btn {
             padding: 15px 30px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
             border-radius: 50px;
+            text-decoration: none;
             font-weight: bold;
+            font-size: 1em;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .btn-retour:hover {
-            background-color: #2980b9;
+        .btn-primaire {
+            background-color: #ffd93d;
+            color: #333;
+        }
+        
+        .btn-primaire:hover {
+            background-color: #ffc107;
             transform: scale(1.05);
         }
         
-        /* Indicateur pour liens en construction */
-        .en-construction {
-            position: relative;
-            display: inline-block;
+        .btn-secondaire {
+            background-color: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
-        .en-construction::after {
-            content: " 🚧";
-            font-size: 0.8em;
-            color: #e67e22;
+        .btn-secondaire:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: white;
         }
         
-        .en-construction::before {
-            content: "";
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            width: 12px;
-            height: 12px;
-            background-color: #e67e22;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.3); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        /* Contenu principal */
-        .contenu-principal {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: white;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .contenu-principal h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        
-        .contenu-principal p {
-            margin-bottom: 15px;
-        }
-        
-        /* Pied de page */
-        footer {
-            text-align: center;
-            padding: 20px;
+        /* Section expérimentale */
+        .section-experimentale {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 40px;
             margin-top: 40px;
-            color: #7f8c8d;
-            font-size: 0.9em;
-            border-top: 1px solid #ddd;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
         }
+        
+        .section-experimentale h2 {
+            color: #6c5ce7;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        /* Formulaire de test */
+        .formulaire-test {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .groupe-form {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-size: 1em;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 217, 61, 0.5);
+        }
+        
+        .btn-soumettre {
+            background-color: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-soumettre:hover {
+            background-color: #5b4fcf;
+        }
+        
+        /* Pied de page spécifique à la branche */
+        .footer-branche {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animation-entree {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delai-1 { animation-delay: 0.1s; }
+        .delai-2 { animation-delay: 0.3s; }
+        .delai-3 { animation-delay: 0.5s; }
+        .delai-4 { animation-delay: 0.7s; }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-menu {
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            .conteneur-principal {
+                grid-template-columns: 1fr;
+            }
+            
+            .boutons-navigation {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .nav-menu a {
-                width: 80%;
-                text-align: center;
-            }
-            
-            .titre-rouge {
-                font-size: 2em;
-                padding: 15px;
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Titre rouge comme demandé -->
-    <h1 class="titre-rouge">Voici mon travail</h1>
-    
-    <!-- Menu de navigation -->
-    <nav>
-        <ul class="nav-menu">
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="construction.html" class="en-construction">Services</a></li>
-            <li><a href="construction.html" class="en-construction">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="construction.html" class="en-construction">Blog</a></li>
-        </ul>
-    </nav>
-    
+    <!-- En-tête spécifique à la branche -->
+    <header class="header-branche animation-entree">
+        <div class="badge-branche">BRANCHE: DEVELOPPEMENT</div>
+        <h1>🚀 Version Expérimentale</h1>
+        <p class="sous-titre">Ceci est une branche de développement avec des fonctionnalités en test</p>
+    </header>
+
     <!-- Contenu principal -->
-    <main class="contenu-principal">
-        <h2>Bienvenue sur mon site</h2>
-        
-        <p>Ce site démontre la gestion des liens en construction. Certains liens sont fonctionnels, d'autres mènent vers une page "en construction".</p>
-        
-        <h3>Liens de démonstration :</h3>
-        <ul style="padding-left: 20px; margin: 20px 0;">
-            <li><a href="#accueil">Lien fonctionnel (ancre)</a></li>
-            <li><a href="construction.html" class="en-construction">Lien en construction</a></li>
-            <li><a href="#contact">Autre lien fonctionnel</a></li>
-            <li><a href="construction.html" class="en-construction">Page future</a></li>
-        </ul>
-        
-        <div id="accueil">
-            <h3>Section Accueil</h3>
-            <p>Cette section est accessible via le lien "Accueil" dans le menu.</p>
+    <main>
+        <div class="conteneur-principal">
+            <!-- Carte 1 : Nouvelle Fonctionnalité -->
+            <div class="carte animation-entree delai-1">
+                <h2><span class="icone">✨</span> Nouvelle Fonctionnalité</h2>
+                <p>Cette branche contient une nouvelle fonctionnalité que nous testons avant de la merger dans la branche principale.</p>
+                <p>Statut: <strong style="color: #ffd93d;">En test</strong></p>
+                <div class="boutons-navigation">
+                    <a href="#tester" class="btn btn-primaire">Tester maintenant</a>
+                </div>
+            </div>
+
+            <!-- Carte 2 : Changements Techniques -->
+            <div class="carte animation-entree delai-2">
+                <h2><span class="icone">⚙️</span> Changements Techniques</h2>
+                <p>Refonte de l'architecture du code avec des optimisations de performance.</p>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>Optimisation des requêtes</li>
+                    <li>Nouvelle structure CSS</li>
+                    <li>Meilleure accessibilité</li>
+                </ul>
+            </div>
+
+            <!-- Carte 3 : Corrections de Bugs -->
+            <div class="carte animation-entree delai-3">
+                <h2><span class="icone">🐛</span> Corrections de Bugs</h2>
+                <p>Cette branche corrige plusieurs bugs identifiés dans la version principale :</p>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>Fix: Problème d'affichage mobile</li>
+                    <li>Fix: Erreurs de validation HTML</li>
+                    <li>Fix: Problèmes de performance</li>
+                </ul>
+            </div>
         </div>
-        
-        <div id="contact" style="margin-top: 40px;">
-            <h3>Section Contact</h3>
-            <p>Cette section est accessible via le lien "Contact" dans le menu.</p>
-            <p>Email: contact@monsite.fr</p>
-        </div>
+
+        <!-- Section expérimentale -->
+        <section id="tester" class="section-experimentale animation-entree delai-4">
+            <h2>🧪 Zone de Test Expérimentale</h2>
+            
+            <div class="formulaire-test">
+                <div class="groupe-form">
+                    <label for="nom">Votre nom :</label>
+                    <input type="text" id="nom" placeholder="Entrez votre nom">
+                </div>
+                
+                <div class="groupe-form">
+                    <label for="fonctionnalite">Fonctionnalité à tester :</label>
+                    <select id="fonctionnalite">
+                        <option value="1">Nouveau formulaire</option>
+                        <option value="2">Animations CSS</option>
+                        <option value="3">Responsive design</option>
+                        <option value="4">Performances</option>
+                    </select>
+                </div>
+                
+                <div class="groupe-form">
+                    <label for="feedback">Votre feedback :</label>
+                    <textarea id="feedback" rows="4" placeholder="Décrivez votre expérience..."></textarea>
+                </div>
+                
+                <button class="btn-soumettre" onclick="envoyerFeedback()">Envoyer le feedback</button>
+            </div>
+        </section>
     </main>
-    
-    <!-- Code JavaScript pour gérer les liens -->
+
+    <!-- Pied de page -->
+    <footer class="footer-branche">
+        <p>Branche de développement • Version: 1.0.0-beta • Dernière mise à jour: Aujourd'hui</p>
+        <p style="margin-top: 10px;">
+            <a href="../index.html" class="btn btn-secondaire">⬅ Retour à la version principale</a>
+        </p>
+    </footer>
+
+    <!-- Script JavaScript -->
     <script>
-        // Cette fonction s'exécute quand la page est chargée
+        // Animation au chargement
         document.addEventListener('DOMContentLoaded', function() {
-            // Récupère tous les liens de la page
-            const tousLesLiens = document.querySelectorAll('a');
+            console.log('Branche de développement chargée avec succès!');
             
-            // Pour chaque lien
-            tousLesLiens.forEach(lien => {
-                const href = lien.getAttribute('href');
-                
-                // Si le lien pointe vers "construction.html"
-                if (href === 'construction.html') {
-                    // On ajoute un événement au clic
-                    lien.addEventListener('click', function(e) {
-                        // Empêche le comportement par défaut
-                        e.preventDefault();
-                        
-                        // Affiche la page de construction
-                        afficherPageConstruction();
-                    });
-                }
+            // Ajoute une classe d'animation à tous les éléments
+            const elements = document.querySelectorAll('.carte, .section-experimentale');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = (index * 0.2) + 's';
             });
+        });
+
+        // Fonction pour le feedback
+        function envoyerFeedback() {
+            const nom = document.getElementById('nom').value;
+            const fonctionnalite = document.getElementById('fonctionnalite').value;
+            const feedback = document.getElementById('feedback').value;
             
-            // Fonction pour afficher la page de construction
-            function afficherPageConstruction() {
-                // Crée la page de construction
-                const pageConstruction = document.createElement('div');
-                pageConstruction.className = 'page-construction';
-                pageConstruction.innerHTML = `
-                    <h1>🚧 Page en Construction 🚧</h1>
-                    <p>Cette page n'est pas encore disponible. Nous travaillons dessus et elle sera bientôt en ligne.</p>
-                    <p>Merci de votre patience !</p>
-                    <a href="#" class="btn-retour" id="btn-retour-accueil">Retour à l'accueil</a>
-                `;
-                
-                // Remplace tout le contenu de la page
-                document.body.innerHTML = '';
-                document.body.appendChild(pageConstruction);
-                
-                // Ajoute l'événement pour le bouton retour
-                document.getElementById('btn-retour-accueil').addEventListener('click', function(e) {
-                    e.preventDefault();
-                    location.reload(); // Recharge la page pour revenir à l'accueil
-                });
+            if (!nom || !feedback) {
+                alert('Veuillez remplir tous les champs requis.');
+                return;
             }
             
-            console.log('Gestionnaire de liens initialisé avec succès!');
+            // Simulation d'envoi de feedback
+            const fonctionnalites = {
+                '1': 'Nouveau formulaire',
+                '2': 'Animations CSS',
+                '3': 'Responsive design',
+                '4': 'Performances'
+            };
+            
+            const message = `
+                Merci pour votre feedback, ${nom}!
+                
+                Fonctionnalité testée: ${fonctionnalites[fonctionnalite]}
+                Votre commentaire: "${feedback}"
+                
+                Votre contribution nous aide à améliorer le projet!
+            `;
+            
+            alert(message);
+            
+            // Réinitialisation du formulaire
+            document.getElementById('nom').value = '';
+            document.getElementById('fonctionnalite').value = '1';
+            document.getElementById('feedback').value = '';
+            
+            // Animation de confirmation
+            const btn = document.querySelector('.btn-soumettre');
+            btn.textContent = '✅ Feedback envoyé!';
+            btn.style.backgroundColor = '#2ecc71';
+            
+            setTimeout(() => {
+                btn.textContent = 'Envoyer le feedback';
+                btn.style.backgroundColor = '#6c5ce7';
+            }, 2000);
+        }
+
+        // Ajout d'un effet de confetti au clic sur les cartes
+        document.querySelectorAll('.carte').forEach(carte => {
+            carte.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('btn')) {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                }
+            });
         });
     </script>
-    
-    <!-- Pied de page -->
-    <footer>
-        <p>© 2024 Mon Site Web - Tous les liens sont fonctionnels</p>
-        <p>Les liens en construction sont signalés par 🚧</p>
-    </footer>
 </body>
-</html>sss
+</html>
     
     
